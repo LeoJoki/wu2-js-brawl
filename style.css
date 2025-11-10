@@ -1,4 +1,11 @@
 #combat-log {
     display: flex;
     flex-direction: column-reverse;
+
+    .playerDamage {
+        color: red;
+    }
+    .enemyDamage{
+        color: blue
+    }
 }

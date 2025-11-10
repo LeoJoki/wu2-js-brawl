@@ -11,8 +11,11 @@ const enemyHpElement = document.querySelector("#enemy-hp")
 
 const combatLogElement = document.querySelector("#combat-log")
 
-function log(msg) {
+function log(msg, type) {
     const li = document.createElement("li")
+    if (type) {
+        li.classList.add(type)
+    }
     li.textContent = msg
     combatLogElement.appendChild(li)
     if (combatLogElement.childNodes.length > 10) {
@@ -36,11 +39,11 @@ function gameRound() {
     const eRoll = rollDice()
     if (pRoll > eRoll) {
         const damage = pRoll - eRoll
-        log(`Du vinner med en ${pRoll}a mot fiendens ${eRoll}a. Fienden tar ${damage} skada!`)
+        log(`Du vinner med en ${pRoll}a mot fiendens ${eRoll}a. Fienden tar ${damage} skada!`, "enemyDamage")
         playerHp -= damage
     } else if (eRoll > pRoll) {
         const damage = eRoll - pRoll
-        log(`Fienden vinner med en ${eRoll}a mot din ${pRoll}a. Du tar ${damage} skada!`)
+        log(`Fienden vinner med en ${eRoll}a mot din ${pRoll}a. Du tar ${damage} skada!`, "playerDamage")
         enemyHp -= damage
     } else {
         log("Snyggt parerat, inget händer!")
